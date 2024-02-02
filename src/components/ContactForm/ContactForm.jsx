@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Button, Form } from "./ContactForm.styled";
+import { useDispatch } from "react-redux";
 
 const ContactForm = ({ onSubmit }) => {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
