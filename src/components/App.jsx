@@ -1,20 +1,17 @@
 import { useState, useEffect } from "react"
 import './App.css';
 
-import AddContactForm from "./ContactForm/ContactForm";
-import { ContactList } from "./ContactList/ContactList";
-import { nanoid } from "nanoid";
-import Filter from "./Filter/Filter";
 
-const phoneContacts = [
-  { id: nanoid(6), name: 'Valerii', number: '+380 98 380 4 380'}
-];
+import { ContactList } from "./ContactList/ContactList";
+// import { nanoid } from "nanoid";
+import Filter from "./Filter/Filter";
+import { useSelector } from "react-redux";
+import ContactForm from "./ContactForm/ContactForm";
+
 
 export const App = () => {
-    const [contacts, setContacts] = useState(() => {
-    return JSON.parse(window.localStorage.getItem('contacts')) ?? phoneContacts; 
-  });
-
+   
+  const contacts = useSelector(state => state.contactsStore.contacts);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -32,10 +29,10 @@ export const App = () => {
       return;
     }
 
-    setContacts(prevContacts => [
-      ...prevContacts,
-      { id: nanoid(), ...contact },
-    ]);
+    // setContacts(prevContacts => [
+    //   ...prevContacts,
+    //   { id: nanoid(), ...contact },
+    // ]);
   };
 
   const changeFilter = event => setFilter(event.target.value.trim());
@@ -48,21 +45,21 @@ export const App = () => {
     );
   };
 
-  const removeContact = contactId => setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== contactId));
+  // const removeContact = contactId => setContacts(prevContacts =>
+  //     prevContacts.filter(contact => contact.id !== contactId));
 
   const visibleContacts = getVisibleContacts();
 
   return (
     <section>
       <h1>Phonebook</h1>
-      <AddContactForm onSubmit={addContact} />
+      <ContactForm onSubmit={addContact} />
       <h2>Contacts</h2>
       {contacts.length > 0 ? (<Filter value={filter} onChangeFilter={changeFilter} />) : (<p>Your phonebook is empty. Add first contact!</p>)}
       {contacts.length > 0 && (
           <ContactList
           contacts={visibleContacts}
-          onRemoveContact={removeContact}
+          // onRemoveContact={removeContact}
         />
       )}
     </section>

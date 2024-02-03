@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button, Form } from "./ContactForm.styled";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contactsStore.contacts);
-  const dispatch = useDispatch();
+  // const contacts = useSelector(state => state.contactsStore.contacts);
+  // const dispatch = useDispatch();
 
 
   const handleSubmit = event => {
