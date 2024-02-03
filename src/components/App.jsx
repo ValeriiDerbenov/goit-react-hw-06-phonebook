@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react"
-import './App.css';
-
-
-import { ContactList } from "./ContactList/ContactList";
-// import { nanoid } from "nanoid";
-import Filter from "./Filter/Filter";
-import { useSelector } from "react-redux";
-import ContactForm from "./ContactForm/ContactForm";
-
+import React from 'react';
+import { useSelector } from 'react-redux';
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
+import Section from './Section/Section';
+import Title from './Title/Title';
 
 export const App = () => {
-   
   const contacts = useSelector(state => state.contactsStore.contacts);
-  
+
   return (
-    <section>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2> 
-      <Filter />
-      {contacts.length > 0 && <ContactList />}
-    </section>
+    <div>
+      <Section>
+        <Title>Phonebook</Title>
+        <ContactForm />
+      </Section>
+      <Section>
+        <Filter />
+        {contacts.length > 0 && <ContactList />}
+      </Section>
+    </div>
   );
 };

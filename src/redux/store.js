@@ -1,20 +1,35 @@
-import { legacy_createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
-import { nanoid } from 'nanoid';
-// import rootReducer from './rootReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { contactsReducer } from './contacts/contacts.reducer';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { filterReducer } from './filter/filter.reducer';
 
-const initialState = {
-  contacts: [{ id: nanoid(6), name: 'Valerii', number: '+380 98 380 4 380' }],
+const contactsConfig = {
+  key: 'contacts',
+  storage,
+  whitelist: ['contacts'],
 };
 
-const reducer = (state = initialState) => {
-  return state;
-};
+export const store = configureStore({
+  reducer: {
+    contactsStore: persistReducer(contactsConfig, contactsReducer),
+    filterStore: filterReducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
 
-const enchancer = devToolsEnhancer();
-
-const store = legacy_createStore(reducer, enchancer);
-
-// const store = legacy_createStore(rootReducer, enchancer);
-
-export default store;
+export const persistor = persistStore(store);
