@@ -13,6 +13,7 @@ const Filter = ({ value }) => {
       <label className={css.filterLabel}>
         <p className={css.filterLabelText}>Find contacts by name: </p>
         <input
+          placeholder="Search contacts"
           type="text"
           className={css.filterInput}
           name="filter"
