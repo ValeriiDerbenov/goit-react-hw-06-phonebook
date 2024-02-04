@@ -4,6 +4,7 @@ import Title from '../Title/Title';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contacts.reducer';
+import { Notify } from 'notiflix';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -13,7 +14,7 @@ const ContactForm = () => {
 
   const handleFormContact = (name, number) => {
     if (contacts.find(contact => contact.name === name)) {
-      alert('This contact is already in the phonebook');
+      Notify.warning('This contact is already in the phonebook');
       return;
     }
     const finalContacts = {
