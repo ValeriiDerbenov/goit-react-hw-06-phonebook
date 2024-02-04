@@ -31,5 +31,8 @@ export const store = configureStore({
       },
     }),
 });
+// console.log('store :>> ', store);
 
 export const persistor = persistStore(store);
+
+// console.log('persistor :>> ', persistor);

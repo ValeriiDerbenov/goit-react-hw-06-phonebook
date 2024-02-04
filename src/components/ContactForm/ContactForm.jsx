@@ -36,6 +36,9 @@ const ContactForm = () => {
   const handleInputChange = event => {
     const value = event.target.value;
     const name = event.target.name;
+    console.log('event.target :>> ', event.target);
+    console.log('value :>> ', value);
+    console.log('name :>> ', name);
 
     switch (name) {
       case 'name': {
@@ -63,7 +66,7 @@ const ContactForm = () => {
             name="name"
             value={name}
             onChange={handleInputChange}
-            placeholder="Name Surname"
+            placeholder="Name, Surname"
             required
           ></input>
         </label>
@@ -75,7 +78,7 @@ const ContactForm = () => {
             name="number"
             value={number}
             onChange={handleInputChange}
-            placeholder="Format: xxx-xxx-xx-xx"
+            placeholder="Phone Number"
             pattern="^\+?\d{1,4}[ .\-]?\(?\d{1,3}\)?[ .\-]?\d{1,4}[ .\-]?\d{1,4}[ .\-]?\d{1,9}$"
             required
           ></input>
