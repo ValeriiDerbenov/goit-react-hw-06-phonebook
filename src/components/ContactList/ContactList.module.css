@@ -1,3 +1,6 @@
 .contactListContainer {
-    padding: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgb(229, 218, 240);
+  border-radius: 6px;
 }

@@ -24,6 +24,7 @@ const ContactForm = () => {
     };
     dispatch(addContact(finalContacts));
   };
+  
 
   const handleSubmit = event => {
     event.preventDefault();
