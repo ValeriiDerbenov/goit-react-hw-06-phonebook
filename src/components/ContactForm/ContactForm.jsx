@@ -36,9 +36,9 @@ const ContactForm = () => {
   const handleInputChange = event => {
     const value = event.target.value;
     const name = event.target.name;
-    console.log('event.target :>> ', event.target);
-    console.log('value :>> ', value);
-    console.log('name :>> ', name);
+    // console.log('event.target :>> ', event.target);
+    // console.log('value :>> ', value);
+    // console.log('name :>> ', name);
 
     switch (name) {
       case 'name': {
